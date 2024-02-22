@@ -81,7 +81,7 @@ body {
 }
 
 .image-log-in {
-  background-image: url('./images/amico.png');
+  background-image: url('../public/images/amico.png');
   background-repeat: no-repeat;
   background-position: 100px 274px;
 }
@@ -128,7 +128,7 @@ body {
   background-color: var(--primary);
   border-radius: 0px 32.5px 32.5px 0px;
 }
-.btn-sign-off{
+.btn-logout{
   border: none;
   background-color: transparent;
   text-align: start;

@@ -37,7 +37,7 @@ function NavBar() {
         </li>
       </ul>
 
-      <button className='btn-sign-off'>Cerrar Sesión</button>
+      <button className='btn-logout'>Cerrar Sesión</button>
 
     </nav>
   )
