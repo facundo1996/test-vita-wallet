@@ -85,7 +85,7 @@ body {
 }
 
 .image-log-in {
-  background-image: url('../public/images/amico.png');
+  background-image: url('./assets/images/amico.png');
   background-repeat: no-repeat;
   background-position: 100px 274px;
 }
@@ -95,7 +95,7 @@ body {
   width: 372px;
   overflow: hidden;
   background-color: var(--secondary);
-  background-image: url('/public/images/illustrations.png');
+  background-image: url('./assets/images/illustrations.png');
   background-repeat: no-repeat;
   background-position-y: bottom;
   display: flex;
@@ -142,4 +142,16 @@ body {
   line-height: 33px;
   letter-spacing: 0em;
   color: rgba(255, 255, 255, 1);
+}
+.card-container{
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+  gap: 20px;
+}
+.card-coin{
+  width: 285px;
+  height: 129px;
+  background: rgba(245, 246, 246, 1);
+  border: 2px solid rgba(222, 224, 224, 1)
 }
