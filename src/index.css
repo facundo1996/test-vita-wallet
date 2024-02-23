@@ -127,10 +127,16 @@ body {
   width: 230px;
   padding-left: 80px;
   margin-top: 8px;
+
+
+  background: linear-gradient(to right, var(--primary) 50%, transparent 50%);
+  background-size: 200% 100%;
+  background-position:right bottom;
+  transition:all 0.3s ease;
 }
 .selected-link{
-  background-color: var(--primary);
   border-radius: 0px 32.5px 32.5px 0px;
+  background-position:left bottom!important;
 }
 .btn-logout{
   border: none;

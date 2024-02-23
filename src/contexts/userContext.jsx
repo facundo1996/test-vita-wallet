@@ -3,8 +3,7 @@ import React, { useState } from "react";
 export const LogInContext = React.createContext();
 
 export function LogInProvider(props) {
-  /* const [user, setUser] = useState(0) */
-  const [auth, setAuth] = useState(false)
+  const [auth, setAuth] = useState('')
   const value = {auth, setAuth}
   return (
     <LogInContext.Provider value={value} >
