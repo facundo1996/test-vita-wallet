@@ -4,7 +4,11 @@
   --font-color: rgba(1, 14, 17, 1);
   --font-primary: "Open Sans", sans-serif;
 }
-
+#root{
+  display: flex;
+  max-width: 100vw;
+  max-height: 100vh;
+}
 body {
   margin: 0;
   padding: 0;
@@ -91,7 +95,7 @@ body {
   width: 372px;
   overflow: hidden;
   background-color: var(--secondary);
-  background-image: url('./images/illustrations.png');
+  background-image: url('/public/images/illustrations.png');
   background-repeat: no-repeat;
   background-position-y: bottom;
   display: flex;
