@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import axios from 'axios';
 import { LogInContext } from '../contexts/userContext'
+import { signIn } from '../api.ts'
 
 function FormLogin() {
   const { setAuth } = useContext(LogInContext)
@@ -9,23 +9,16 @@ function FormLogin() {
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
 
-  const login = async(e)=>{
+  const login = async (e) => {
     e.preventDefault()
     const data = {
       email: email,
-      password : password,
+      password: password,
       dev_mode: true
     }
-
-    const headers = {  };
-
-    const res = await axios.post(`https://api.qa.vitawallet.io/api/auth/sign_in`, data, {headers: headers})
-    if(res.status === 200){
-      const token = res.headers['access-token']
-      localStorage.setItem(`token`, JSON.stringify(token))
-      setAuth(token)
-      navigate('/')
-    }
+    const token = await signIn(data)
+    setAuth(token)
+    navigate('/')
   }
 
 
