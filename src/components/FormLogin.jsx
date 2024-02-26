@@ -2,10 +2,15 @@ import React, { useContext, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LogInContext } from '../contexts/userContext'
 import { signIn } from '../api.ts'
+import eye from '../assets/icons/eye.png'
+import eyeOff from '../assets/icons/eye-off.png'
+import check from '../assets/icons/check.png'
+
 
 function FormLogin() {
   const { setAuth } = useContext(LogInContext)
   const navigate = useNavigate()
+  const [showPassword, setShowPassword] = useState(false)
   const [password, setPassword] = useState('')
   const [email, setEmail] = useState('')
 
@@ -24,30 +29,48 @@ function FormLogin() {
 
   return (
     <form className='form-log-in'>
-      <div className="mb-3">
-        <label htmlFor="exampleInputEmail1" className="form-label">Correo electrónico</label>
+      <div className="mb-3 container-input">
+        <label htmlFor="inputEmail" className="form-label">Correo electrónico</label>
         <input
           placeholder='juan@gmail.com'
           type="email"
           className="form-control"
-          id="exampleInputEmail1"
+          id="inputEmail"
           autoComplete="username"
           onChange={(e) => setEmail(e.target.value)}
         />
+        <span onClick={() => setShowPassword(!showPassword)} className='input-icon'>
+          {
+            email.length > 6 && <img src={check} alt="" />
+          }
+        </span>
       </div>
-      <div className="mb-3">
-        <label htmlFor="exampleInputPassword1" className="form-label">Contraseña</label>
+      <div className="mb-3 container-input">
+        <label htmlFor="InputPassword" className="form-label">Contraseña</label>
         <input
           placeholder='Escribe tu contraseña'
-          type="password"
+          type={showPassword ? 'text' : 'password'}
           className="form-control"
-          id="exampleInputPassword1"
+          id="InputPassword"
           autoComplete="current-password"
           onChange={(e) => setPassword(e.target.value)}
         />
+        <span onClick={() => setShowPassword(!showPassword)} className='input-icon'>
+          {
+            showPassword
+              ? <img src={eye} alt="" />
+              : <img src={eyeOff} alt="" />
+          }
+        </span>
         <div id="passwordHelp" className="form-text text-end">¿Olvidaste tu contaseña?</div>
       </div>
-      <button onClick={(e) => login(e)} className="btn-log-in">Iniciar sesión</button>
+      <button
+        onClick={(e) => login(e)}
+        disabled={email.length > 6 && password.length > 6 ? false : true}
+        className={email.length > 6 && password.length > 6 ? "btn-login btn-enabled mt-5" : 'btn-login btn-disabled mt-5'}
+      >
+        Iniciar sesión
+      </button>
     </form>
   )
 }
