@@ -1,10 +1,11 @@
 import React, { useContext, useEffect } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { LogInContext } from '../contexts/userContext';
 
 function NavBar() {
   const { setAuth } = useContext(LogInContext)
   const location = useLocation();
+  const navigate = useNavigate();
   const path = location.pathname;
   const routes = [
     {
@@ -46,12 +47,12 @@ function NavBar() {
   function logout() {
     setAuth('')
     localStorage.removeItem("token");
+    navigate('/')
   }
 
   return (
     <nav className='navbar-container'>
       <ul className='list-navbar'>
-
         {
           routes.map((route, i) => (
             <li key={i} className={route.path === path ?'selected-link': ''}>

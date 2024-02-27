@@ -27,8 +27,8 @@ function HistoryTable() {
         {
           dataTable.map((data, i) =>
             <tr key={i}>
-              <td>{data.title}</td>
-              <td>{data.total}</td>
+              <td className='title-table'>{data.title}</td>
+              <td className='info-table'>{data.total}</td>
             </tr>
           )
         }

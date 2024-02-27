@@ -23,34 +23,35 @@ function FormLogin() {
     }
     const token = await signIn(data)
     setAuth(token)
+    localStorage.setItem('token', JSON.stringify(token))
     navigate('/')
   }
 
 
   return (
-    <form className='form-log-in'>
-      <div className="mb-3 container-input">
+    <form className='form-login'>
+      <div className="mb-3 position-relative">
         <label htmlFor="inputEmail" className="form-label">Correo electrónico</label>
         <input
           placeholder='juan@gmail.com'
           type="email"
-          className="form-control"
+          className="form-control inputForm"
           id="inputEmail"
           autoComplete="username"
           onChange={(e) => setEmail(e.target.value)}
         />
-        <span onClick={() => setShowPassword(!showPassword)} className='input-icon'>
+        <span className='input-icon'>
           {
             email.length > 6 && <img src={check} alt="" />
           }
         </span>
       </div>
-      <div className="mb-3 container-input">
+      <div className="mb-3 position-relative">
         <label htmlFor="InputPassword" className="form-label">Contraseña</label>
         <input
           placeholder='Escribe tu contraseña'
           type={showPassword ? 'text' : 'password'}
-          className="form-control"
+          className="form-control inputForm"
           id="InputPassword"
           autoComplete="current-password"
           onChange={(e) => setPassword(e.target.value)}

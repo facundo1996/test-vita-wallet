@@ -4,11 +4,13 @@
   --font-color: rgba(1, 14, 17, 1);
   --font-primary: "Open Sans", sans-serif;
 }
-#root{
+
+#root {
   display: flex;
   max-width: 100vw;
   max-height: 100vh;
 }
+
 body {
   margin: 0;
   padding: 0;
@@ -20,6 +22,32 @@ body {
   font-size: 48px;
   font-weight: 600;
   color: var(--font-color)
+}
+
+.ps-md {
+  padding-left: 50px;
+}
+
+.ps-xl {
+  padding-left: 150px;
+}
+
+.w-md {
+  width: 436px;
+  box-sizing: border-box;
+}
+
+.w-xl {
+  width: 638px;
+}
+
+.title-green {
+  font-size: 28px;
+  font-weight: 600;
+  line-height: 38px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(22, 114, 135, 1);
 }
 
 .container-app {
@@ -40,33 +68,34 @@ body {
   padding-top: 120px;
 }
 
-.form-log-in {
+.form-login {
   margin-top: 130px;
 }
 
-.form-log-in input {
+.inputForm {
   font-size: 16px;
   font-weight: 400;
   line-height: 50px;
   letter-spacing: 0em;
 }
 
-.form-log-in input::placeholder {
+.inputForm::placeholder {
   color: rgba(185, 193, 194, 1);
 }
 
-.form-log-in .form-label {
+.form-label {
   font-size: 14px;
-  font-weight: 400;
+  font-weight: 500;
   line-height: 19px;
   letter-spacing: 0em;
 }
 
-.btn-disabled{
+.btn-disabled {
   color: rgba(249, 249, 250, 1);
   background-color: rgba(222, 224, 224, 1);
 }
-.btn-enabled{
+
+.btn-enabled {
   color: rgba(249, 249, 250, 1);
   background: linear-gradient(90deg, #05BCB9 0%, #167287 100%);
 }
@@ -138,14 +167,16 @@ body {
 
   background: linear-gradient(to right, var(--primary) 50%, transparent 50%);
   background-size: 200% 100%;
-  background-position:right bottom;
-  transition:all 0.3s ease;
+  background-position: right bottom;
+  transition: all 0.3s ease;
 }
-.selected-link{
+
+.selected-link {
   border-radius: 0px 32.5px 32.5px 0px;
-  background-position:left bottom!important;
+  background-position: left bottom !important;
 }
-.btn-logout{
+
+.btn-logout {
   border: none;
   background-color: transparent;
   text-align: start;
@@ -156,26 +187,141 @@ body {
   letter-spacing: 0em;
   color: rgba(255, 255, 255, 1);
 }
-.card-container{
+
+.card-container {
   display: flex;
   flex-wrap: wrap;
   width: 100%;
   gap: 20px;
 }
-.card-coin{
+
+.card-coin {
   width: 285px;
   height: 129px;
   background: rgba(245, 246, 246, 1);
   border: 2px solid rgba(222, 224, 224, 1)
 }
-.container-input{
-  position: relative;
-}
-.input-icon{
+
+.input-icon {
   position: absolute;
   right: 14px;
   top: 51px;
-  :hover{
+
+  :hover {
     cursor: pointer;
   }
+}
+
+.dolar-icon {
+  position: absolute;
+  left: 14px;
+  top: 50px;
+}
+
+.title-table {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 62px;
+  letter-spacing: 0em;
+}
+
+.info-table {
+  padding: 20px 0px;
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 62px;
+  letter-spacing: 0em;
+  text-align: right;
+}
+
+.buttons-container {
+  margin-top: 140px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-back {
+  border: 1px solid;
+  border-color: linear-gradient(90deg, #05BCB9 0%, #167287 100%);
+  background: transparent;
+  color: rgba(22, 114, 135, 1);
+
+}
+
+.btn-md {
+  width: 100%;
+  height: 54px;
+  padding: 16px 12px 16px 12px;
+  border-radius: 6px;
+
+  font-size: 16px;
+  font-weight: 600;
+  line-height: 22px;
+  letter-spacing: 0em;
+}
+
+.back-arrow {
+  position: absolute;
+  width: 48px;
+  left: -70px;
+  top: -3px;
+}
+
+.back-arrow:hover {
+  cursor: pointer;
+}
+
+.sumarry-container {
+  width: 490px;
+  background-color: rgba(249, 249, 249, 1);
+  padding: 24px;
+}
+
+.title-summary {
+  font-size: 14px;
+}
+
+.info-summary {
+  font-size: 16px;
+}
+
+.modal-dialog {
+  width: 100%;
+}
+
+.modal-dialog {
+  max-width: none;
+  width: 100vw;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  overflow: hidden;
+}
+
+.modal-content {
+  width: 50%;
+  height: 736px;
+}
+
+.modal-header {
+  border-bottom: 0px;
+}
+
+.modal-body {
+  padding-top: 80px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.info-modal {
+  margin-top: 90px;
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 22px;
+  letter-spacing: 0em;
+  text-align: center;
+  color: rgba(1, 14, 17, 1);
 }
