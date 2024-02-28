@@ -1,6 +1,6 @@
 # Challenge para Vita Wallet
 
-## ¡Bienvenido al proyecto de Challenge para Vita Wallet! Este proyecto tiene como objetivo evaluar mis habilidades en el desarrollo de web como fron-end. A continuación, encontrarás instrucciones detalladas sobre cómo ejecutar la aplicación y las pruebas asociadas.
+¡Bienvenido al proyecto de Challenge para Vita Wallet! Este proyecto tiene como objetivo evaluar mis habilidades en el desarrollo de web como fron-end. A continuación, encontrarás instrucciones detalladas sobre cómo ejecutar la aplicación y las pruebas asociadas.
 
 ## Instrucciones para ejecutar la aplicación:
 
