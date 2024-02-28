@@ -1,22 +1,26 @@
 import React, { useContext, useEffect } from 'react'
 import CardCoin from '../components/CardCoin'
 import HistoryTable from '../components/HistoryTable'
-import { getProfile } from '../api.jsx'
+import { getProfile, getHistory } from '../api.jsx'
 import { LogInContext } from '../contexts/userContext.jsx'
 import { profileContext } from '../contexts/profileContext.jsx'
+import { historyContext } from '../contexts/historyContext.jsx'
 
 function HomePage() {
   const { token } = useContext(LogInContext)
   const { profileData, setProfileData } = useContext(profileContext)
+  const { historyData, setHistoryData } = useContext(historyContext)
 
-  const getProfileData = async () => {
-    const response = await getProfile(token)
-    setProfileData(response.data)
+  const getData = async () => {
+    const responseProfile = await getProfile(token)
+    const responseHistory = await getHistory(token)
+    setProfileData(responseProfile.data)
+    setHistoryData(responseHistory.data)
   }
 
   useEffect(() => {
     if (token !== null) {
-      getProfileData()
+      getData()
     }
   }, [token]);
 
@@ -38,7 +42,7 @@ function HomePage() {
       </div>
       <div>
         <h3 className='mt-5 fs-2 mb-4'>Historial</h3>
-        <HistoryTable />
+        <HistoryTable history={historyData} />
       </div>
     </div>
   )

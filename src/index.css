@@ -233,12 +233,33 @@ body {
 }
 
 .info-table {
-  padding: 20px 0px;
   font-size: 16px;
   font-weight: 600;
   line-height: 62px;
   letter-spacing: 0em;
   text-align: right;
+}
+.positive{
+  color: rgba(5, 188, 185, 1)!important;
+  font-weight: bold;
+}
+.negative{
+  color: rgba(206, 52, 52, 1)!important;
+  font-weight: bold;
+}
+.neutral{
+  color: rgba(1, 14, 17, 1)!important;
+  font-weight: bold;
+}
+.not-transactions{
+  height: 150px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: bold;
+  border-radius: 16px;
+  background-color: rgb(196, 198, 200);
+  color: rgb(231, 227, 227);
 }
 
 .buttons-container {

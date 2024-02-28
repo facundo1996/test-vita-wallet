@@ -49,3 +49,19 @@ export async function getProfile(headersProp) {
     })
 }
 
+export async function getHistory(headersProp) {
+  const HeadersConfig = {
+    headers: {
+      ...headersProp
+    }
+  }
+  return await axios.get(` https://api.qa.vitawallet.io/api/transactions`, HeadersConfig)
+    .then(res => {
+      return res
+    })
+    .catch(error => {
+      console.error(error);
+      throw error;
+    })
+}
+
