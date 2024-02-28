@@ -115,7 +115,7 @@ function FormTransfer() {
       </form>
       <div className='buttons-container' style={{gap: 20}}>
         <button className='btn-back btn-md' onClick={(e) => backPage(e)}>Atrás</button>
-        <button className='btn-enabled btn-md border-0' onClick={(e) => transferir(e)}>Continuar</button>
+        <button disabled={email.length > 6 && amount > 0 && description.length > 0 ?false :true} className='btn-enabled btn-md border-0' onClick={(e) => transferir(e)}>Continuar</button>
       </div>
     </div >
   )
