@@ -1,10 +1,23 @@
-import React, { useContext } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import arrowLeft from '../assets/icons/arrow-left.png'
 import { transferContext } from '../contexts/transfersContext'
 import ModalTransfer from './ModalTransfer'
+import { LogInContext } from '../contexts/userContext'
+import { getPrices } from '../api.jsx'
+import { pricesContext } from '../contexts/pricesContext.jsx'
 
 function SummaryTransaction() {
   const { transferData, setTransferData } = useContext(transferContext)
+  const { pricesData, setPricesData } = useContext(pricesContext)
+  const { token } = useContext(LogInContext)
+  const [ valueUSDT, setValueUSDT ] = useState(0)
+  
+  const getPricesData = async () => {
+    const response = await getPrices(token)
+    setPricesData(response.data)
+    setValueUSDT(response.data.prices.usdt.usd_sell.toFixed(2))
+    console.log(response.data)
+  }
 
   function backPage() {
     setTransferData({
@@ -12,9 +25,22 @@ function SummaryTransaction() {
       case: transferData.case - 1
     })
   }
+  
   function confirmTransfer() {
-
+    console.log("ASD")
+    setTransferData({
+      transfer: {
+        amount: Number,
+        email: String,
+        description: String,
+      },
+      case: 1
+    })
   }
+
+  useEffect(() => {
+    getPricesData()
+  },[]);
 
 
 
@@ -37,17 +63,17 @@ function SummaryTransaction() {
 
           <div className='col-6 py-1 title-summary'>Tú envías</div>
           <div className='col-6 py-1 info-summary text-end'>
-            <b style={{ fontWeight: 600, color: 'rgba(22, 114, 135, 1)' }} >$ {transferData.transfer.amount} CLP</b>
+            <b style={{ fontWeight: 600, color: 'rgba(22, 114, 135, 1)' }} >$ {transferData?.transfer?.amount} USDT</b>
           </div>
 
           <div className='col-6 py-1 title-summary'>Tasa de cambio</div>
           <div className='col-6 py-1 info-summary text-end'>
-            <b style={{ fontWeight: 600 }} >1 CLP = 0,27 ARS</b>
+            <b style={{ fontWeight: 600 }} >1 USDT = {valueUSDT} USD</b>
           </div>
 
           <div className='col-6 py-1 title-summary'>Destinatario recibe</div>
           <div className='col-6 py-1 info-summary text-end'>
-            <b style={{ fontWeight: 600, color: 'rgba(22, 114, 135, 1)' }} >$ 135.438,38 ARS</b>
+            <b style={{ fontWeight: 600, color: 'rgba(22, 114, 135, 1)' }} >$ {transferData?.transfer?.amount*valueUSDT}</b>
           </div>
 
           <div className='col-6 py-1 title-summary'>Fecha de arribo</div>

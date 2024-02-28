@@ -25,7 +25,7 @@ function HomePage() {
   }, [token]);
 
   return (
-    <div className='ps-5'>
+    <div className='ps-5 homepage'>
       <div>
         <img style={{ width: '50px' }} src="/public/icons/coin.png" alt="" />
         <h2 className='my-5 fs-1'>¡Hola {profileData?.data?.attributes?.first_name || profileData?.data?.attributes?.email}!</h2>

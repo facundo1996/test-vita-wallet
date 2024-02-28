@@ -262,6 +262,11 @@ body {
   color: rgb(231, 227, 227);
 }
 
+.homepage{
+  width: -webkit-fill-available;
+  padding-right: 120px;
+}
+
 .buttons-container {
   margin-top: 140px;
   width: 100%;

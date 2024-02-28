@@ -1,11 +1,17 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import check from '../assets/icons/check.png';
 import dolarDesign from '../assets/icons/dollar-design.png';
 import { transferContext } from '../contexts/transfersContext';
+import { useNavigate } from 'react-router-dom';
 
 function FormTransfer() {
 
+  const navigate = useNavigate()
   const { transferData, setTransferData } = useContext(transferContext)
+
+  function backPage(e){
+    navigate('/')
+  }
 
   function transferir(e) {
     e.preventDefault()
@@ -19,9 +25,21 @@ function FormTransfer() {
     })
   }
 
-  const [amount, setAmount] = useState('')
-  const [email, setEmail] = useState('')
-  const [description, setDescription] = useState('')
+  const [amount, setAmount] = useState(Number)
+  const [email, setEmail] = useState(String)
+  const [description, setDescription] = useState(String)
+
+  useEffect(() => {
+    if(transferData.transfer.amount){
+      setAmount(transferData.transfer.amount)
+    }
+    if(transferData.transfer.email){
+      setEmail(transferData.transfer.email)
+    }
+    if(transferData.transfer.description){
+      setDescription(transferData.transfer.description)
+    }
+  });
 
   return (
     <div className='ps-5 pb-5 w-md d-flex flex-column justify-content-between'>
@@ -37,12 +55,13 @@ function FormTransfer() {
             <img style={{ opacity: amount > 1 ? '1' : '0.3' }} src={dolarDesign} alt="" />
           </span>
           <input
-            placeholder='00,00 CLP'
+            placeholder='00,00 USDT'
             type="number"
             className="form-control inputForm ps-md"
             id="inputAmount"
             aria-describedby="basic-addon4"
             autoComplete="username"
+            value={amount}
             onChange={(e) => setAmount(e.target.value)}
           />
           <span className='input-icon'>
@@ -51,7 +70,7 @@ function FormTransfer() {
             }
           </span>
         </div>
-        <div className="form-text mt-4" id="basic-addon4">Saldo disponible: $ 900.000,00 CLP</div>
+        <div className="form-text mt-4" id="basic-addon4">Saldo disponible: $ 900.000,00 USDT</div>
 
         <h3 className='mt-5 fs-2 mb-4'>
           Destinatario
@@ -65,6 +84,7 @@ function FormTransfer() {
             type="email"
             className="form-control inputForm"
             id="inputEmail"
+            value={email}
             onChange={(e) => setEmail(e.target.value)}
           />
           <span className='input-icon'>
@@ -82,6 +102,7 @@ function FormTransfer() {
             maxLength={10}
             className="form-control inputForm"
             id="inputDescription"
+            value={description}
             onChange={(e) => setDescription(e.target.value)}
           />
           <span className='input-icon'>
@@ -93,7 +114,7 @@ function FormTransfer() {
 
       </form>
       <div className='buttons-container' style={{gap: 20}}>
-        <button className='btn-back btn-md' onClick={(e) => transferir(e)}>Atrás</button>
+        <button className='btn-back btn-md' onClick={(e) => backPage(e)}>Atrás</button>
         <button className='btn-enabled btn-md border-0' onClick={(e) => transferir(e)}>Continuar</button>
       </div>
     </div >

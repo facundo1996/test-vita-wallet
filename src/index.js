@@ -6,6 +6,7 @@ import { LogInProvider } from './contexts/userContext';
 import { TransferProvider } from './contexts/transfersContext';
 import { ProfileProvider } from './contexts/profileContext';
 import { HistoryProvider } from './contexts/historyContext';
+import { PricesProvider } from './contexts/pricesContext';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -14,7 +15,9 @@ root.render(
       <TransferProvider>
         <ProfileProvider>
           <HistoryProvider>
-            <App />
+            <PricesProvider>
+              <App />
+            </PricesProvider>
           </HistoryProvider>
         </ProfileProvider>
       </TransferProvider>
