@@ -90,8 +90,7 @@ export async function sendTransaction( data, headersProp) {
       return res
     })
     .catch(error => {
-      console.error(error);
-      throw error;
+      return error
     })
 }
 

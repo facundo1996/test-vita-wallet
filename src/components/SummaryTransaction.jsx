@@ -11,6 +11,7 @@ function SummaryTransaction() {
   const { setPricesData } = useContext(pricesContext)
   const { token } = useContext(LogInContext)
   const [valueUSDT, setValueUSDT] = useState(0)
+  const [errorMessage, setErrorMessage] = useState('')
 
   const getPricesData = async () => {
     const response = await getPrices(token)
@@ -32,18 +33,24 @@ function SummaryTransaction() {
       "amount_sent": transferData?.transfer?.amount
     }
     const response = await sendTransaction(data, token)
+
+    if(response.response.status !== 201){
+      setErrorMessage(response.response.data.message)
+    }else{
+      setTransferData({
+        transfer: {
+          amount: Number,
+          email: String,
+          description: String,
+        },
+        case: 1
+      })
+    }
+
   }
 
   function confirmTransfer() {
     sendTransferData()
-    setTransferData({
-      transfer: {
-        amount: Number,
-        email: String,
-        description: String,
-      },
-      case: 1
-    })
   }
 
   useEffect(() => {
@@ -90,13 +97,14 @@ function SummaryTransaction() {
           </div>
 
         </div>
+        <h3 className='negative fs-5 mt-5'>{errorMessage}</h3>
 
       </div>
 
       <div className='buttons-container' style={{ gap: 120 }}>
         <button className='btn-back btn-md' onClick={backPage} >Atrás</button>
         <button className='btn-enabled btn-md border-0' onClick={confirmTransfer} data-bs-toggle="modal" data-bs-target="#modalId">Transferir</button>
-        <ModalTransfer />
+        <ModalTransfer errorMessage={errorMessage} />
       </div>
     </div >
   )
