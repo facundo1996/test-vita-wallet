@@ -79,4 +79,19 @@ export async function getPrices(headersProp) {
       throw error;
     })
 }
+export async function sendTransaction( data, headersProp) {
+  const HeadersConfig = {
+    headers: {
+      ...headersProp
+    }
+  }
+  return await axios.post(` https://api.qa.vitawallet.io/api/transactions/exchange`, data, HeadersConfig)
+    .then(res => {
+      return res
+    })
+    .catch(error => {
+      console.error(error);
+      throw error;
+    })
+}
 

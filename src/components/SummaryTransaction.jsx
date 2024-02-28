@@ -3,20 +3,19 @@ import arrowLeft from '../assets/icons/arrow-left.png'
 import { transferContext } from '../contexts/transfersContext'
 import ModalTransfer from './ModalTransfer'
 import { LogInContext } from '../contexts/userContext'
-import { getPrices } from '../api.jsx'
+import { getPrices, sendTransaction } from '../api.jsx'
 import { pricesContext } from '../contexts/pricesContext.jsx'
 
 function SummaryTransaction() {
   const { transferData, setTransferData } = useContext(transferContext)
-  const { pricesData, setPricesData } = useContext(pricesContext)
+  const { setPricesData } = useContext(pricesContext)
   const { token } = useContext(LogInContext)
-  const [ valueUSDT, setValueUSDT ] = useState(0)
-  
+  const [valueUSDT, setValueUSDT] = useState(0)
+
   const getPricesData = async () => {
     const response = await getPrices(token)
     setPricesData(response.data)
     setValueUSDT(response.data.prices.usdt.usd_sell.toFixed(2))
-    console.log(response.data)
   }
 
   function backPage() {
@@ -25,9 +24,18 @@ function SummaryTransaction() {
       case: transferData.case - 1
     })
   }
-  
+
+  const sendTransferData = async () => {
+    let data = {
+      "currency_sent": "usdt",
+      "currency_received": "usd",
+      "amount_sent": transferData?.transfer?.amount
+    }
+    const response = await sendTransaction(data, token)
+  }
+
   function confirmTransfer() {
-    console.log("ASD")
+    sendTransferData()
     setTransferData({
       transfer: {
         amount: Number,
@@ -40,7 +48,7 @@ function SummaryTransaction() {
 
   useEffect(() => {
     getPricesData()
-  },[]);
+  }, []);
 
 
 
@@ -73,7 +81,7 @@ function SummaryTransaction() {
 
           <div className='col-6 py-1 title-summary'>Destinatario recibe</div>
           <div className='col-6 py-1 info-summary text-end'>
-            <b style={{ fontWeight: 600, color: 'rgba(22, 114, 135, 1)' }} >$ {transferData?.transfer?.amount*valueUSDT}</b>
+            <b style={{ fontWeight: 600, color: 'rgba(22, 114, 135, 1)' }} >$ {transferData?.transfer?.amount * valueUSDT}</b>
           </div>
 
           <div className='col-6 py-1 title-summary'>Fecha de arribo</div>
