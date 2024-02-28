@@ -1,4 +1,4 @@
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 import './index.css';
 import LogIn from "./pages/LogIn";
@@ -9,15 +9,23 @@ import NavBar from './components/NavBar';
 import { LogInContext } from './contexts/userContext';
 
 function App() {
-  const { auth, setAuth } = useContext(LogInContext)
-  const tokenLocal = localStorage.getItem('token')
+  const { token, setToken } = useContext(LogInContext)
+  let tokenLocal = localStorage.getItem('token')
+  tokenLocal = JSON.parse(tokenLocal)  
+
+  useEffect(() => {
+    if(tokenLocal !== null){
+      setToken(tokenLocal)
+    }
+  }, []);
+
   return (
     <>
       <BrowserRouter>
-        {auth || tokenLocal ?<NavBar /> :''}
+        <NavBar />
         <Routes>
           <Route path='/login' element={<LogIn />} />
-          <Route element={<AuthRoute user={auth || tokenLocal} />}>
+          <Route element={<AuthRoute user={tokenLocal !== null} />}>
             <Route path='/' element={<HomePage />} />
             <Route path='/transfers' element={<Transfers />} />
           </Route>

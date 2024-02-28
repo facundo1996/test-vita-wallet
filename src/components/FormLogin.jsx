@@ -1,14 +1,14 @@
-import React, { useContext, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { LogInContext } from '../contexts/userContext'
-import { signIn } from '../api.ts'
+import { signIn } from '../api.jsx'
 import eye from '../assets/icons/eye.png'
 import eyeOff from '../assets/icons/eye-off.png'
 import check from '../assets/icons/check.png'
 
 
 function FormLogin() {
-  const { setAuth } = useContext(LogInContext)
+  const { setToken } = useContext(LogInContext)
   const navigate = useNavigate()
   const [showPassword, setShowPassword] = useState(false)
   const [password, setPassword] = useState('')
@@ -22,7 +22,7 @@ function FormLogin() {
       dev_mode: true
     }
     const token = await signIn(data)
-    setAuth(token)
+    setToken(token)
     localStorage.setItem('token', JSON.stringify(token))
     navigate('/')
   }

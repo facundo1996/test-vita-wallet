@@ -50,6 +50,11 @@ body {
   color: rgba(22, 114, 135, 1);
 }
 
+.bold-xl{
+  font-weight: 600;
+  font-size: 24px;
+}
+
 .container-app {
   display: flex;
   justify-content: center;
@@ -196,10 +201,12 @@ body {
 }
 
 .card-coin {
-  width: 285px;
-  height: 129px;
+  width: 370px;
+  height: 180px;
   background: rgba(245, 246, 246, 1);
-  border: 2px solid rgba(222, 224, 224, 1)
+  border: 2px solid rgba(222, 224, 224, 1);
+  border-radius: 6px;
+  font-weight: 500;
 }
 
 .input-icon {

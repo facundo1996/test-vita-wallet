@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom'
 import { LogInContext } from '../contexts/userContext';
 
 function NavBar() {
-  const { setAuth } = useContext(LogInContext)
+  const { setToken } = useContext(LogInContext)
   const location = useLocation();
   const navigate = useNavigate();
   const path = location.pathname;
@@ -45,9 +45,9 @@ function NavBar() {
   })
 
   function logout() {
-    setAuth('')
+    setToken(null)
     localStorage.removeItem("token");
-    navigate('/')
+    navigate('/login')
   }
 
   return (

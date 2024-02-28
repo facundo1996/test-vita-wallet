@@ -12,8 +12,6 @@ function Transfers() {
         return <FormTransfer />
       case 2:
         return <SummaryTransaction />
-      case 3:
-        return <h1>3333</h1>
       default:
         return <FormTransfer />
     }
